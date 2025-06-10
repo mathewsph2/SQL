@@ -1,0 +1,45 @@
+/*Crie o banco de dados empresa. Utilize o comando 
+CREATE DATABASE.*/
+create database empresa;
+/*Escolha a base de dados empresa para utilização.*/
+use empresa;
+/*2) Criação das tabelas*/
+-- Tabela Empregado
+CREATE TABLE empregado (
+    codigo_empregado DECIMAL(6),
+    nome VARCHAR(50),
+    codigo_cargo DECIMAL(5),
+    endereco VARCHAR(50),
+    bairro VARCHAR(20),
+    cidade VARCHAR(20),
+    codigo_chefe DECIMAL(6),
+    uf CHAR(2),
+    data_nasc DATE,
+    sexo CHAR(1),
+    filiacao VARCHAR(60),
+    salario DECIMAL(10 , 2 )
+);
+
+CREATE TABLE CARGO (
+    CODIGO_CARGO DECIMAL(3),
+    DESCRICAO_CARGO VARCHAR(30),
+    SALARIO_MIN DECIMAL(7 , 2 ),
+    SALARIO_MAX DECIMAL(8 , 2 ),
+    NIVEL_GRADUACAO CHAR(1)
+);
+
+CREATE TABLE DEPENDENTE (
+    CODIGO_EMPREGADO DECIMAL(6),
+    NOME_DEPENDENTE VARCHAR(50),
+    SEXO CHAR(1),
+    DATA_NASC DATE,
+    PARENTESCO VARCHAR(15)
+);
+
+CREATE TABLE DEPARTAMENTO (
+    CODIGO_DEP DECIMAL(3),
+    NOME_DEP VARCHAR(30),
+    CODIGO_GERENTE DECIMAL(6),
+    DATA_INICIO_GERENTE DATE,
+    DATA_CRIACAO DATE
+);
