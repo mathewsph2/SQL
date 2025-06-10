@@ -43,3 +43,29 @@ CREATE TABLE DEPARTAMENTO (
     DATA_INICIO_GERENTE DATE,
     DATA_CRIACAO DATE
 );
+
+
+
+
+-- Criando a base de dados faculdade
+create database faculdade;
+-- Selecionou a base de dados faculdade para utilização
+use faculdade;
+-- Eliminamdo a base de dado sakila
+drop database sakila;
+-- Criando a tabela aluno
+CREATE TABLE curso (
+    codcurso DECIMAL(4),
+    nome VARCHAR(30),
+    sigla CHAR(3),
+    ch DECIMAL(4)
+);
+-- Abrindo a descrição da tabela curso
+desc curso;
+-- Criando a tabela aluno
+CREATE TABLE aluno (
+    matricula NUMERIC(5),
+    nome VARCHAR(50),
+    datanasc DATE,
+    endereco VARCHAR(70)
+);
