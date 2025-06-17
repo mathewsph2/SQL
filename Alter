@@ -1,0 +1,32 @@
+-- Criando a base de dados faculdade
+create database faculdade;
+
+-- Selecionou a base de dados faculdade para utilização
+use faculdade;
+
+-- Criando a tabela aluno
+CREATE TABLE curso (
+    codcurso DECIMAL(4),
+    nome VARCHAR(30),
+    sigla CHAR(3),
+    ch DECIMAL(4)
+);
+
+-- Criando a tabela aluno
+CREATE TABLE aluno (
+    matricula NUMERIC(5),
+    nome VARCHAR(50),
+    datanasc DATE,
+    endereco VARCHAR(70)
+);
+
+-- Adicionando as colunas cpf e sobrenome e eliminando a coluna endereco
+ALTER table aluno add column cpf decimal(11),
+add sobrenome varchar(50),
+drop endereco;
+
+-- Modificando o tamanho do sobrenome do aluno, para receber até 60 caracteres
+alter table aluno modify sobrenome varchar(60);
+
+-- Modificando a matricula do aluno de decimal para char com 6
+alter table aluno modify column matricula char(6);
