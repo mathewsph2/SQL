@@ -1,3 +1,7 @@
+----------------------------------------------------------------------------------------------------------
+22-05-2025
+----------------------------------------------------------------------------------------------------------
+
 -- Criando a base de dados faculdade
 create database faculdade;
 
@@ -30,3 +34,74 @@ alter table aluno modify sobrenome varchar(60);
 
 -- Modificando a matricula do aluno de decimal para char com 6
 alter table aluno modify column matricula char(6);
+
+
+----------------------------------------------------------------------------------------------------------
+26-05-2025
+----------------------------------------------------------------------------------------------------------
+
+
+-- Criando a base de dados faculdade
+create database faculdade;
+
+-- Selecionou a base de dados faculdade para utilização
+use faculdade;
+
+-- Criando a tabela aluno
+CREATE TABLE curso (
+    codcurso DECIMAL(4),
+    nome VARCHAR(30),
+    sigla CHAR(3),
+    ch DECIMAL(4)
+);
+
+-- Criando a tabela aluno
+CREATE TABLE aluno (
+    matricula NUMERIC(5),
+    nome VARCHAR(50),
+    datanasc DATE,
+    endereco VARCHAR(70)
+);
+
+/*Criando a chave primária da tabela curso, após a criação da tabela*/
+alter table curso add primary key(codcurso);
+
+-- Olhando a descrição da tabela curso
+desc curso;
+
+/*Criando a chave primária da tabela aluno, após a criação da tabela*/
+alter table aluno add primary key(matricula);
+
+-- Olhando a descrição da tabela aluno
+desc aluno;
+
+-- Adicionando a coluna codigo na tabela aluno
+alter table aluno add codigo decimal(4);
+
+-- Adicionando a chave estrangeira da tabela aluno
+alter table aluno add foreign key(codigo) references
+curso(codcurso);
+
+-- Adicionando o valor padrão para a sigla do curso
+alter table curso alter sigla set default "ADS";
+
+-- Olhando a descrição da tabela curso
+desc curso; 
+
+/* Utilizando o comando change para mudar o endereco para rua e o
+tipo para varchar(50)*/
+alter table aluno change endereco rua varchar(50);
+
+/*Utilizando o comando change para mudar apenas o nome da coluna
+nome para nomecompleto*/
+alter table aluno change nome nomecompleto varchar(50);
+
+/*Utiliznado o comando change para mudar apenas o tipo da coluna
+nome para varchar(80)*/
+alter table curso change nome nome varchar(80);
+
+-- Renomeando a tabela aluno para discente
+alter table aluno rename discente;
+
+
+
