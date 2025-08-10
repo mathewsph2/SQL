@@ -261,6 +261,114 @@ insert into cidade values
 
 select * from cidade; 
 
--- QUESTÃO 5: Crie as seguintes chaves estrangeiras na tabela voo:
+-- QUESTÃO 5: QUESTÃO 5: Crie as seguintes chaves estrangeiras na tabela voo:
+-- ● O atributo cidadeorigem é a chave estrangeira da tabela voo. Este atributo referencia a tabela cidade na coluna codigocidade.
+-- ● O atributo cidadedestino é a chave estrangeira da tabela voo. Este atributo referencia a tabela cidade na coluna codigocidade.
+-- Crie as chaves estrangeiras com on update cascade e on delete cascade.
+
+alter table voo add constraint fk_cidadedeorigem foreign key(cidade)
+references cidade(codigocidade); 
+
+-- ------------------------------------------------------------------------------
+
+-- Revisar: 
+
+-- Para cidadeorigem
+ALTER TABLE voo 
+ADD CONSTRAINT fk_voo_cidadeorigem 
+FOREIGN KEY (cidadeorigem) 
+REFERENCES cidade(codigocidade)
+ON UPDATE CASCADE 
+ON DELETE CASCADE;
+
+-- Para cidadedestino
+ALTER TABLE voo 
+ADD CONSTRAINT fk_voo_cidadedestino 
+FOREIGN KEY (cidadedestino) 
+REFERENCES cidade(codigocidade)
+ON UPDATE CASCADE 
+ON DELETE CASCADE;
+
+-- ------------------------------------------------------------------------------
+
+-- QUESTÃO 6: Faça as seguintes exclusões: 
+-- TABELA AERONAVE: 
+-- 6.1: Elimine a aeronave do fabricante FABE.
+
+select * from aeronave; 
+
+SET SQL_SAFE_UPDATES=0;
+
+delete from aeronave 
+where fabricante = 'FABE'; 
+
+-- TABELA ASSENTO:
+-- 6.2: Elimine o(s) assento(s) de primeira classe e número K8.
+
+select * from assento; 
+
+delete from assento
+where classe='Primeira Classe' and numeroassento='K01'; 
+
+-- TABELA CLIENTE
+-- 6.3: Elimine os clientes que moram no endereço Olípio Costa, Rio de Janeiro – RJ ou possuem o cpf 20120120122.
+
+select * from cliente; 
+
+delete from cliente 
+where endereco = 'Olímpio Costa, Rio de janeiro-RJ' or CPF=20120120122; 
+
+
+-- TABELA RESERVA: 
+-- Elimine as reservas feitas em ‘2014-12-08’.
+
+select * from reserva; 
+
+delete from reserva
+where datareserva='2014-12-01';
+
+-- Tabela voo:
+-- ● Elimine os voos com em que o status é cancelado
+
+select * from voo; 
+
+delete from voo
+where status='cancelado';
+
+-- QUESTÃO 7: Faça as seguintes atualizações:
+-- Tabela aeronave:
+-- 7.1: ● Altere o ano de fabricação da aeronave PR-AZB para 2011.
+
+select * from aeronave;
+
+update aeronave set anofabricacao='2011'
+where prefixo = 'PR-AZB';
+
+-- 7.2: ● Altere a capacidade do BOING para 525.
+
+
+-- 7.3: ● Altere a capacidade do AIRBUS para 215.
+
+
+-- 7.4: ● Aumente em 15% a capacidade do AIRBUS.
+
+
+-- Tabela assento:
+select * from assento;
+-- Altere o status do assento K06 para Disponível e a classe para primeira classe.
+
+-- ● Altere o status de todos os assentos para disponível.
+update assento set status='Disponível';
+
+-- Tabela reserva:
+select * from reserva;
+-- ● Aumente em 10% o preço das reservas feitas a partir de 2014-12-01.
+
+UPDATE reserva 
+SET preco = preco * 1.1  -- Aumenta 10% (multiplica por 1.1)
+WHERE datareserva >= '2014-12-01';  -- ">=" inclui o dia 01/12/2014
+
+
+
 
 
